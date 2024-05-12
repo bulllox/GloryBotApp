@@ -1,8 +1,28 @@
-﻿namespace GloryBotApp.ViewModels;
+﻿using System.Timers;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-public class MainWindowViewModel : ViewModelBase
+namespace GloryBotApp.ViewModels;
+
+public partial class MainWindowViewModel : ViewModelBase
 {
-#pragma warning disable CA1822 // Mark members as static
-    public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+    [ObservableProperty] private double _progressValue;
+
+    private Timer _timer = new();
+
+    public MainWindowViewModel()
+    {
+        ProgressValue = 0;
+        _timer.Interval = 1000;
+        _timer.Elapsed += OnTimerTick;
+        _timer.Start();
+    }
+
+    private void OnTimerTick(object? sender, ElapsedEventArgs e)
+    {
+        ProgressValue += 10;
+        if (ProgressValue == 100)
+        {
+            _timer.Stop();
+        }
+    }
 }

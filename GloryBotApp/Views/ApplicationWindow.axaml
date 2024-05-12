@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="using:GloryBotApp.ViewModels"
+        x:Class="GloryBotApp.Views.ApplicationWindow"
+        x:DataType="vm:ApplicationWindowViewModel"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterScreen"
+        Title="Glorybot">
+    <Design.DataContext>
+        <vm:ApplicationWindowViewModel />
+    </Design.DataContext>
+    <SplitView Background="#202020" OpenPaneLength="200" IsPaneOpen="{Binding IsMenuOpen}" CompactPaneLength="30" DisplayMode="CompactInline">
+        <SplitView.Pane>
+            <Border BorderBrush="Gold" BorderThickness="0 0 2 0">
+                <StackPanel>
+                    <Label IsVisible="{Binding IsMenuOpen}" Content="Glorybot" FontSize="22" Foreground="Gold" FontFamily="Arial" FontStyle="Normal" HorizontalAlignment="Center" />
+                    <Button Command="{Binding OpenMenu}" HorizontalAlignment="Right" Margin="0 0 2 0" Height="30" Width="30" Padding="5">
+                        <Image Source="/Assets/Menu.png"></Image>
+                    </Button>
+                    <WrapPanel></WrapPanel>
+                </StackPanel>
+            </Border>
+          
+        </SplitView.Pane>
+    </SplitView>
+</Window>
